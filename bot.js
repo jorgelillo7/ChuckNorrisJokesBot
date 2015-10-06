@@ -65,11 +65,11 @@
  module.exports = bot;
 
 // sample keyboard
-// var kb = {
-//     keyboard: [
-//         ['one', 'two'],
-//         ['three'],
-//         ['four']
-//     ],
-//     one_time_keyboard: true
-// }
+ var kb = {
+     keyboard: [
+         ['one', 'two'],
+         ['three'],
+         ['four']
+     ],
+     one_time_keyboard: true
+ }
