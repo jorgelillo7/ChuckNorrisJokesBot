@@ -28,12 +28,12 @@
 
  // Mount middlewares defaulted for root: 
  // log all HTTP calls for debugging
- // app.use(morgan('combined'));
+  app.use(morgan('combined'));
  // use resources for html: HTML, JS and CSS etc.
-// app.use(express.static(__dirname + '/views'));
+ app.use(express.static(__dirname + '/views'));
 // // parse incoming formData into JSON
-// app.use(bodyParser.json());
-// app.use(multer());
+ app.use(bodyParser.json());
+ app.use(multer());
 
 
  // route: concise way to group all HTTP methods for a path
