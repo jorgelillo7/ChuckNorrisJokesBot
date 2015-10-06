@@ -1,0 +1,18 @@
+var bot = require('telegram-bot-bootstrap');
+var request = require('request');
+var fs = require('fs');
+var chat = 6988872; //replace this with your chat id noted previously 
+var text="this is my sample test2"; //replace this with your message
+var token = "81474806:AAHwCaFYFp3IlqdKq9WXMb6h3fyAnMp0Gn8"; //replace token with the token given by botfather
+var Alice = new bot(token);
+
+Alice.on('text', function (msg) {
+  var chatId = msg.chat.id;  
+  Alice.sendMessage(chat, text)// ? you'll receive a message from Alice..then(console.log)// ? optional, will log the successful message sent over HTTP
+
+});
+
+//Alice.getUpdates().then(console.log)// ? you'll see an update message. Look for your user_id in "message.from.id"
+// Once you get your id to message yourself, you may:
+
+
