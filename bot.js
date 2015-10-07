@@ -76,7 +76,7 @@
 	} else {
 		options = {
 		  host: 'api.icndb.com',
-		  path: '/jokes/random?limitTo=['+category+']
+		  path: parse('/jokes/random', category)
 	     };
 
 	}
@@ -114,3 +114,13 @@
      ],
      one_time_keyboard: true
  }
+
+
+function parse(str) {
+    var args = [].slice.call(arguments, 1),
+        i = 0;
+
+    return str.replace(/%s/g, function() {
+        return args[i++];
+    });
+}

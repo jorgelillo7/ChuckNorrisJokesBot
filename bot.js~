@@ -63,7 +63,7 @@
 
 	var category = 'all';
 
-	if(Message.text == 'nerdy' || Message.text == 'nerdy' || Message.text == 'nerdy' || Message.text == 'nerdy'){
+	if(Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
 		category = Message.text;
 	}
 
