@@ -61,10 +61,26 @@
      // echo
      var http = require('http');
 
-     var options = {
-	  host: 'api.icndb.com',
-	  path: '/jokes/random'
-     };
+	var category = 'all';
+
+	if(Message.text == 'nerdy' || Message.text == 'nerdy' || Message.text == 'nerdy' || Message.text == 'nerdy'){
+		category = Message.text;
+	}
+
+	var options;
+	if (category == 'all'){
+		options = {
+		  host: 'api.icndb.com',
+		  path: '/jokes/random'
+	     };
+	} else {
+		options = {
+		  host: 'api.icndb.com',
+		  path: '/jokes/random?limitTo=['+category+']
+	     };
+
+	}
+     
 
      callback = function(response) {
 	     var str = '';
@@ -77,7 +93,7 @@
 	     //the whole response has been recieved, so we just print it out here
 	    response.on('end', function () {
 		 var data = JSON.parse(str);
-		 botAux.sendMessage(chat_id, data.joke);
+		 botAux.sendMessage(chat_id, data.value.joke);
 	  	 console.log(data);
 	    });
     }
@@ -92,9 +108,9 @@
 // sample keyboard
  var kb = {
      keyboard: [
-         ['one', 'two'],
-         ['three'],
-         ['four']
+         ['random'],
+         ['nerdy', 'explicit'],
+         ['chuck norris', 'bruce schneier']
      ],
      one_time_keyboard: true
  }
