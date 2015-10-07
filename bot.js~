@@ -61,7 +61,7 @@
      var http = require('http');
 
      var options = {
-	  host: 'http://api.icndb.com',
+	  host: 'api.icndb.com',
 	  path: '/jokes/random'
      };
 
