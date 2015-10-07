@@ -58,7 +58,30 @@
      // you may call the methods from API.js, which are all inherited by this bot class
   
      // echo
-     this.sendMessage(chat_id, "you said: " + Message.text);
+     var http = require('http');
+
+     var options = {
+	  host: 'http://api.icndb.com',
+	  path: '/jokes/random'
+     };
+
+     callback = function(response) {
+	     var str = '';
+	     //another chunk of data has been recieved, so append it to `str`
+	     response.on('data', function (chunk) {
+	     str += chunk;
+     });
+	
+	http.request(options, callback).end();
+
+	  //the whole response has been recieved, so we just print it out here
+	  response.on('end', function () {
+	 this.sendMessage(chat_id, str);
+	    console.log(str);
+	  });
+	}
+
+    
  }
 
 // export the bot class
