@@ -68,6 +68,7 @@
 
      callback = function(response) {
 	     var str = '';
+	     var data = '';
 	     //another chunk of data has been recieved, so append it to `str`
 	     response.on('data', function (chunk) {
 	     str += chunk;
@@ -75,8 +76,9 @@
 	
 	     //the whole response has been recieved, so we just print it out here
 	    response.on('end', function () {
-		 botAux.sendMessage(chat_id, str);
-	  	 console.log(str);
+		 var data = JSON.parse(str);
+		 botAux.sendMessage(chat_id, data.joke);
+	  	 console.log(data);
 	    });
     }
 	
