@@ -61,10 +61,26 @@
      // echo
      var http = require('http');
 
-     var options = {
-	  host: 'api.icndb.com',
-	  path: '/jokes/random'
-     };
+	var category = 'all';
+
+	if(Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
+		category = Message.text;
+	}
+
+	var options;
+	if (category == 'all'){
+		options = {
+		  host: 'api.icndb.com',
+		  path: '/jokes/random'
+	     };
+	} else {
+		options = {
+		  host: 'api.icndb.com',
+		  path: '/jokes/random?limitTo=['+category+']
+	     };
+
+	}
+     
 
      callback = function(response) {
 	     var str = '';
@@ -92,9 +108,9 @@
 // sample keyboard
  var kb = {
      keyboard: [
-         ['one', 'two'],
-         ['three'],
-         ['four']
+         ['random'],
+         ['nerdy', 'explicit'],
+         ['chuck norris', 'bruce schneier']
      ],
      one_time_keyboard: true
  }
