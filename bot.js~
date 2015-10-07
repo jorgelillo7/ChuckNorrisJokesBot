@@ -94,7 +94,7 @@
 	    response.on('end', function () {
 		 var data = JSON.parse(str);
 
-		 botAux.sendMessage(chat_id, data.value.joke, undefined, undefined, kb));
+		 botAux.sendMessage(chat_id, data.value.joke, undefined, undefined, kb);
 	  	 console.log(data);
 	    });
     }
