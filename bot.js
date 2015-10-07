@@ -77,7 +77,7 @@
 	     //the whole response has been recieved, so we just print it out here
 	    response.on('end', function () {
 		 var data = JSON.parse(str);
-		 botAux.sendMessage(chat_id, data.joke);
+		 botAux.sendMessage(chat_id, data.value.joke);
 	  	 console.log(data);
 	    });
     }
