@@ -51,7 +51,8 @@
          user_id = Message.from.id,
          // id of the chat(room)
          chat_id = Message.chat.id;
-
+	
+	var botAux = this;
      ////////////////////////
      // Extend from here:  //
      ////////////////////////
@@ -74,7 +75,7 @@
 	
 	     //the whole response has been recieved, so we just print it out here
 	    response.on('end', function () {
-		 bot.sendMessage(chat_id, str);
+		 botAux.sendMessage(chat_id, str);
 	  	 console.log(str);
 	    });
     }
