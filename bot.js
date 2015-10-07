@@ -74,7 +74,7 @@
 	
 	     //the whole response has been recieved, so we just print it out here
 	    response.on('end', function () {
-		 this.sendMessage(chat_id, str);
+		 bot.sendMessage(chat_id, str);
 	  	 console.log(str);
 	    });
     }
