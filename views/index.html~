@@ -44,11 +44,12 @@
       </div>
     </div>
   </div>
+<p> {{dispCtrl.msg}}</p>
 
 <div class="footer">
 	<div class="container">
 	  <p><b>Author:</b> Jorge Lillo (2015) </p>
-	  <p><b>Contact mail:</b> jorge.lillo9@gmail.com</p>
+	  <p><b>Contact mail:</b> <a href="mailto:jorge.lillo9@gmail.com">jorge.lillo9@gmail.com</a></p>
 	</div>
  </div>
 </body>
