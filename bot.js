@@ -60,9 +60,7 @@
   
      // echo
      var http = require('http');
-	if(Message.text == '/start'){
-		botAux.sendMessage(chat_id, 'select one of the values of the custom keyboard', undefined, undefined, kb);
-	} else {
+	if(Message.text == 'random' || Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
 		var category = 'all';
 		if(Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
 			category = Message.text;
@@ -100,10 +98,11 @@
 			 console.log('------------');
 		         console.log(category);
 		    });
-	    }
+	    }		
+		
+	} else {
+		botAux.sendMessage(chat_id, 'Select one of the values of the custom keyboard', undefined, undefined, kb);
 	}
-	
-
 	
     http.request(options, callback).end();
     
