@@ -19,4 +19,6 @@ heroku local
 
 heroku logout
 
+heroku git:remote -a guarded-sea-9422 
+
 Dynos are ephemeral and isolated: always created from slug, and all changes is lost after it closes. For shared resource and communication, use addons
