@@ -1,5 +1,6 @@
 Useful Heroku Commands:
 
+heroku login
 heroku create appname
 git push heroku master
 heroku ps:scale web=1
@@ -15,5 +16,7 @@ heroku config:set TIMES=2 (config vars in process.env)
 heroku releases (like Git commits)
 heroku logs [—ps web.1] [—tail]
 heroku local
+
+heroku logout
 
 Dynos are ephemeral and isolated: always created from slug, and all changes is lost after it closes. For shared resource and communication, use addons
