@@ -98,13 +98,15 @@
 			 console.log('------------');
 		         console.log(category);
 		    });
-	    }		
+	    }	
+
+	    http.request(options, callback).end();	
 		
 	} else {
 		botAux.sendMessage(chat_id, 'Select one of the values of the custom keyboard', undefined, undefined, kb);
 	}
 	
-    http.request(options, callback).end();
+    
     
  }
 

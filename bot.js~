@@ -104,8 +104,6 @@
 		botAux.sendMessage(chat_id, 'Select one of the values of the custom keyboard', undefined, undefined, kb);
 	}
 	
-
-	
     http.request(options, callback).end();
     
  }
