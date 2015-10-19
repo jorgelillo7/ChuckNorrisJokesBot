@@ -15,7 +15,7 @@
 
  // telegram bot
  var bot = require(__dirname + '/bot.js');
- var token = '81474806:AAHwCaFYFp3IlqdKq9WXMb6h3fyAnMp0Gn8';
+ var token = '167019661:AAFhbpTShHXvK3hhLxRU9gU8AAMTY-m9Wfk';
  var webhookUrl = 'https://guarded-sea-9422.herokuapp.com/'
  var bot1 = new bot(process.env.TOKEN || token, process.env.WEBHOOK || webhookUrl);
 

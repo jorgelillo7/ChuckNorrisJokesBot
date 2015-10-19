@@ -60,46 +60,50 @@
   
      // echo
      var http = require('http');
-
-	var category = 'all';
-
-	if(Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
-		category = Message.text;
-	}
-
-	var options;
-	if (category == 'all'){
-		options = {
-		  host: 'api.icndb.com',
-		  path: '/jokes/random'
-	     };
+	if(Message.text == '/start'){
+		botAux.sendMessage(chat_id, 'select one of the values of the custom keyboard', undefined, undefined, kb);
 	} else {
-		options = {
-		  host: 'api.icndb.com',
-		  path: parse('/jokes/random', category)
-	     };
+		var category = 'all';
+		if(Message.text == 'nerdy' || Message.text == 'explicit' || Message.text == 'chuck norris' || Message.text == 'bruce schneier'){
+			category = Message.text;
+		}
 
-	}
-     
+		var options;
+		if (category == 'all'){
+			options = {
+			  host: 'api.icndb.com',
+			  path: '/jokes/random'
+		     };
+		} else {
+			options = {
+			  host: 'api.icndb.com',
+			  path: parse('/jokes/random', category)
+		     };
 
-     callback = function(response) {
-	     var str = '';
-	     var data = '';
-	     //another chunk of data has been recieved, so append it to `str`
-	     response.on('data', function (chunk) {
-	     str += chunk;
-     	     });
+		}
+	     
+
+	     callback = function(response) {
+		     var str = '';
+		     var data = '';
+		     //another chunk of data has been recieved, so append it to `str`
+		     response.on('data', function (chunk) {
+		     str += chunk;
+	     	     });
 	
-	     //the whole response has been recieved, so we just print it out here
-	    response.on('end', function () {
-		 var data = JSON.parse(str);
+		     //the whole response has been recieved, so we just print it out here
+		    response.on('end', function () {
+			 var data = JSON.parse(str);
 
-		 botAux.sendMessage(chat_id, data.value.joke, undefined, undefined, kb);
-	  	 console.log(data);
-		 console.log('------------');
-                 console.log(category);
-	    });
-    }
+			 botAux.sendMessage(chat_id, data.value.joke, undefined, undefined, kb);
+		  	 console.log(data);
+			 console.log('------------');
+		         console.log(category);
+		    });
+	    }
+	}
+	
+
 	
     http.request(options, callback).end();
     
