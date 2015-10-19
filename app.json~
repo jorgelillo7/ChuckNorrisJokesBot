@@ -1,6 +1,6 @@
 {
-  "name": "Telegram Bot ChuckNorrisJokesBot",
-  "description": "Telegram bot with jokes of Chuck Norris thanks to http://www.icndb.com/",
+  "name": "Telegram bot bootstrap",
+  "description": "A barebones Node.js app using Express 4",
   "repository": "https://github.com/kengz/telegram-bot-bootstrap",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["Telegram", "bot", "bootstrap", "node", "express", "static"]
