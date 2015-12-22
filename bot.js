@@ -92,8 +92,14 @@
 		     //the whole response has been recieved, so we just print it out here
 		    response.on('end', function () {
 			 var data = JSON.parse(str);
-
-			 botAux.sendMessage(chat_id, data.value.joke, undefined, undefined, kb);
+			 var joke = data.value.joke;
+			
+ 			//to replace &quot to '
+			 var find = '&quot;';
+			 var re = new RegExp(find, 'g');
+			 joke = joke.replace(re, "\"");
+			
+			 botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
 		  	 console.log(data);
 			 console.log('------------');
 		         console.log(category);
