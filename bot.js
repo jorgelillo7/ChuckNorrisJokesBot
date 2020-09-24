@@ -98,8 +98,7 @@ async function getJoke(url) {
   try {
     const response = await axios.get(url);
     console.log(response);
-    console.log(data);
-    var joke = data.value;
+    var joke = response.data.value;
 
     //to replace &quot to '
     var find = "&quot;";
@@ -107,7 +106,7 @@ async function getJoke(url) {
     joke = joke.replace(re, '"');
 
     botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
-    console.log(data);
+    console.log(response);
     console.log("------------");
     console.log(category);
   } catch (error) {
