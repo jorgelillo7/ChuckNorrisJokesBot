@@ -98,6 +98,7 @@ bot.prototype.handle = function (req, res) {
 
       //the whole response has been recieved, so we just print it out here
       response.on("end", function () {
+        console.log(str);
         var data = JSON.parse(str);
         console.log(data);
         var joke = data.value;
@@ -114,6 +115,8 @@ bot.prototype.handle = function (req, res) {
       });
     };
 
+    console.log(options.path);
+    console.log(options.host);
     http.request(options, callback).end();
   } else {
     botAux.sendMessage(
