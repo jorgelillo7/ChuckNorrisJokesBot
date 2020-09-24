@@ -57,7 +57,6 @@ bot.prototype.handle = async function (req, res) {
   // you may call the methods from API.js, which are all inherited by this bot class
 
   // echo
-  const axios = require("axios");
   if (
     Message.text == "random" ||
     Message.text == "science" ||
@@ -80,7 +79,7 @@ bot.prototype.handle = async function (req, res) {
       url = url + "?category=" + category;
     }
 
-    await getJoke(url);
+    await fetchJokeAndSend(url, botAux);
   } else {
     botAux.sendMessage(
       chat_id,
@@ -92,7 +91,7 @@ bot.prototype.handle = async function (req, res) {
   }
 };
 
-async function getJoke(url) {
+async function fetchJokeAndSend(url, botAux) {
   const axios = require("axios");
   console.log(url);
   try {
