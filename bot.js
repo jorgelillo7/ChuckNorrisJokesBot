@@ -79,7 +79,8 @@ bot.prototype.handle = async function (req, res) {
       url = url + "?category=" + category;
     }
 
-    await fetchJokeAndSend(url, botAux);
+    const joke = await fetchJoke(url);
+    botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
   } else {
     botAux.sendMessage(
       chat_id,
@@ -91,7 +92,7 @@ bot.prototype.handle = async function (req, res) {
   }
 };
 
-async function fetchJokeAndSend(url, botAux) {
+async function fetchJoke(url) {
   const axios = require("axios");
   console.log(url);
   try {
@@ -104,19 +105,10 @@ async function fetchJokeAndSend(url, botAux) {
     var re = new RegExp(find, "g");
     joke = joke.replace(re, '"');
 
-    botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
-    console.log(response);
-    console.log("------------");
-    console.log(category);
+    return joke;
   } catch (error) {
     console.error(error);
-    botAux.sendMessage(
-      chat_id,
-      "There was an error please try latter",
-      undefined,
-      undefined,
-      kb
-    );
+    return "There was an error please try latter";
   }
 }
 
