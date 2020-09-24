@@ -93,6 +93,7 @@ bot.prototype.handle = async function (req, res) {
 };
 
 async function getJoke(url) {
+  const axios = require("axios");
   console.log(url);
   try {
     const response = await axios.get(url);
