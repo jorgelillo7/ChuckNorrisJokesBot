@@ -40,7 +40,7 @@ bot.prototype.constructor = bot;
  * // Then bot will handle the incoming Update from you, routed from Telegram!
  *
  */
-bot.prototype.handle = function (req, res) {
+bot.prototype.handle = async function (req, res) {
   // the Telegram Update object. Useful shits
   var Update = req.body,
     // the telegram Message object
@@ -57,7 +57,7 @@ bot.prototype.handle = function (req, res) {
   // you may call the methods from API.js, which are all inherited by this bot class
 
   // echo
-  var http = require("http");
+  const axios = require("axios");
   if (
     Message.text == "random" ||
     Message.text == "science" ||
@@ -75,49 +75,12 @@ bot.prototype.handle = function (req, res) {
       category = Message.text;
     }
 
-    var options;
-    if (Message.text == "random") {
-      options = {
-        host: "api.chucknorris.io",
-        path: "/jokes/random",
-      };
-    } else {
-      options = {
-        host: "api.chucknorris.io",
-        path: parse("/jokes/random?category=", category),
-      };
+    var url = "https://api.chucknorris.io/jokes/random";
+    if (Message.text != "random") {
+      url = url + "?category=" + category;
     }
 
-    callback = function (response) {
-      var str = "";
-      var data = "";
-      //another chunk of data has been recieved, so append it to `str`
-      response.on("data", function (chunk) {
-        str += chunk;
-      });
-
-      //the whole response has been recieved, so we just print it out here
-      response.on("end", function () {
-        console.log(str);
-        var data = JSON.parse(str);
-        console.log(data);
-        var joke = data.value;
-
-        //to replace &quot to '
-        var find = "&quot;";
-        var re = new RegExp(find, "g");
-        joke = joke.replace(re, '"');
-
-        botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
-        console.log(data);
-        console.log("------------");
-        console.log(category);
-      });
-    };
-
-    console.log(options.path);
-    console.log(options.host);
-    http.request(options, callback).end();
+    await getJoke(url);
   } else {
     botAux.sendMessage(
       chat_id,
@@ -128,6 +91,35 @@ bot.prototype.handle = function (req, res) {
     );
   }
 };
+
+async function getJoke(url) {
+  console.log(url);
+  try {
+    const response = await axios.get(url);
+    console.log(response);
+    console.log(data);
+    var joke = data.value;
+
+    //to replace &quot to '
+    var find = "&quot;";
+    var re = new RegExp(find, "g");
+    joke = joke.replace(re, '"');
+
+    botAux.sendMessage(chat_id, joke, undefined, undefined, kb);
+    console.log(data);
+    console.log("------------");
+    console.log(category);
+  } catch (error) {
+    console.error(error);
+    botAux.sendMessage(
+      chat_id,
+      "There was an error please try latter",
+      undefined,
+      undefined,
+      kb
+    );
+  }
+}
 
 // export the bot class
 module.exports = bot;
